@@ -1,3 +1,5 @@
+// Cypress NPM module API
+// https://on.cypress.io/module-api
 const cypress = require('cypress')
 const fs = require('fs')
 const path = require('path')
