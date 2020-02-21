@@ -13,6 +13,13 @@ jobs:
       - attach_workspace:
           at: ~/
       - run: ls -la
+      - run: cat test-results.json
+      - run: |
+          if ! node ./tests-passed; then
+            echo "Tests failed, halting"
+            circleci-agent step halt
+          fi
+      - run: echo "Doing whatever is needed on success"
 
   tests-failed:
     # job will always execute, but will halt if the
@@ -22,6 +29,13 @@ jobs:
       - attach_workspace:
           at: ~/
       - run: ls -la
+      - run: cat test-results.json
+      - run: |
+          if node ./tests-passed; then
+            echo "Tests passed, halting"
+            circleci-agent step halt
+          fi
+      - run: echo "Doing whatever is needed on failure"
 
 workflows:
   build:
@@ -29,6 +43,8 @@ workflows:
       - cypress/run:
           # note: does not fail the build
           command: npm run ci
+          post-steps:
+            - run: cat test-results.json
       - tests-passed:
           requires:
             - cypress/run

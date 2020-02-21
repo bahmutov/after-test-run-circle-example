@@ -8,3 +8,4 @@ const results = JSON.parse(fs.readFileSync(filename, 'utf8'))
 if (results.totalFailed !== 0) {
   throw new Error(`Test results have total failed !== 0, but ${results.totalFailed}`)
 }
+console.log('tests passed')
