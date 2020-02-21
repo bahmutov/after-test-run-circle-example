@@ -18,4 +18,14 @@
 module.exports = (on, config) => {
   // `on` is used to hook into various events Cypress emits
   // `config` is the resolved Cypress config
+
+  // https://circleci.com/docs/2.0/env-vars/#built-in-environment-variables
+  if (process.env.CIRCLE_BUILD_NUM) {
+    // let's fail every even build
+    console.log('process.env.CIRCLE_BUILD_NUM', process.env.CIRCLE_BUILD_NUM)
+    config.env.shouldFail = Number(process.env.CIRCLE_BUILD_NUM) % 2 === 0
+    console.log('should fail?', config.env.shouldFail)
+  }
+
+  return config
 }

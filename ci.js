@@ -9,6 +9,14 @@ cypress.run({
   record,
   video: false
 }).then(results => {
+  // only keep properties that start with "total"
+  const filtered = {}
+  Object.keys(results).filter(key => key.startsWith('total')).forEach((key) => {
+    filtered[key] = results[key]
+  })
+  return filtered
+}).then(results => {
+  console.log('%o', results)
   const filename = path.join(__dirname, 'test-results.json')
   fs.writeFileSync(filename, JSON.stringify(results, null, 2) + '\n', 'utf8')
   console.log('saved test results to %s', filename)
