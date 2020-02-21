@@ -3,9 +3,35 @@
 version: 2.1
 orbs:
   cypress: cypress-io/cypress@1
+
+jobs:
+  tests-passed:
+    # job will always execute, but will halt if the
+    # test results say "failed"
+    executor: cypress/base-10
+    steps:
+      - attach_workspace:
+          at: ~/
+      - run: ls -la
+
+  tests-failed:
+    # job will always execute, but will halt if the
+    # test results say "passed"
+    executor: cypress/base-10
+    steps:
+      - attach_workspace:
+          at: ~/
+      - run: ls -la
+
 workflows:
   build:
     jobs:
       - cypress/run:
           # note: does not fail the build
           command: npm run ci
+      - tests-passed:
+          requires:
+            - cypress/run
+      - tests-failed:
+          requires:
+            - cypress/run

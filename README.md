@@ -1,1 +1,1 @@
-# after-test-run-circle-example
+# after-test-run-circle-example [![CircleCI](https://circleci.com/gh/bahmutov/after-test-run-circle-example/tree/master.svg?style=svg)](https://circleci.com/gh/bahmutov/after-test-run-circle-example/tree/master)
