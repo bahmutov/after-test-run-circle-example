@@ -1,0 +1,25 @@
+{
+  "name": "after-test-run-circle-example",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "cypress run",
+    "cy:open": "cypress open",
+    "ci": "node ./ci"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bahmutov/after-test-run-circle-example.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bahmutov/after-test-run-circle-example/issues"
+  },
+  "homepage": "https://github.com/bahmutov/after-test-run-circle-example#readme",
+  "devDependencies": {
+    "cypress": "4.0.2"
+  }
+}
