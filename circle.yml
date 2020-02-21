@@ -29,7 +29,7 @@ jobs:
       - attach_workspace:
           at: ~/
       - run: ls -la
-      - run: cat test-results.json
+      - run: cat test-results.json || true
       - run: |
           if node ./tests-passed; then
             echo "Tests passed, halting"
@@ -47,9 +47,9 @@ workflows:
             # save test results file in the workspace
             - run: cat test-results.json
             - persist_to_workspace:
-                root: ~/
+                root: /
                 paths:
-                  - test-results.json
+                  - root/project/test-results.json
 
       - tests-passed:
           requires:
