@@ -38,3 +38,5 @@ jobs
 ```
 
 Similarly, `tests-failed` checks the results and halts itself if the tests passed.
+
+![Workflow](images/workflow.png)
