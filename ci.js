@@ -20,7 +20,7 @@ cypress.run({
 }).then(results => {
   console.log('%o', results)
 
-  const ciBuildIndex = process.env.CIRCLE_NODE_INDEX || '-default'
+  const ciBuildIndex = process.env.CIRCLE_NODE_INDEX || 'default'
   const filename = path.join(__dirname, `test-results-${ciBuildIndex}.json`)
   fs.writeFileSync(filename, JSON.stringify(results, null, 2) + '\n', 'utf8')
   console.log('saved test results to %s', filename)
