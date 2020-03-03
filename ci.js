@@ -7,8 +7,11 @@ const path = require('path')
 // record on the Dashboard if running on CI
 // when running locally, don't record
 const record = process.env.CI ? true : false
+// if recording - then run in parallel
+const parallel = record
 cypress.run({
   record,
+  parallel,
   video: false
 }).then(results => {
   // only keep properties that start with "total"
