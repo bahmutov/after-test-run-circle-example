@@ -13,7 +13,7 @@ jobs:
       - attach_workspace:
           at: ~/
       - run: ls -la
-      - run: cat test-results.json
+      - run: cat test-results*.json
       - run: |
           if ! node ./tests-passed; then
             echo "Tests failed, halting"
@@ -29,7 +29,7 @@ jobs:
       - attach_workspace:
           at: ~/
       - run: ls -la
-      - run: cat test-results.json || true
+      - run: cat test-results*.json || true
       - run: |
           if node ./tests-passed; then
             echo "Tests passed, halting"
@@ -40,7 +40,12 @@ jobs:
 workflows:
   build:
     jobs:
+      # install all dependencies in a single job
+      # and then the workspace will be passed to the "cypress/run" job
+      - cypress/install
       - cypress/run:
+          requires:
+            - cypress/install
           # note: does not fail the build
           command: npm run ci
           record: true
