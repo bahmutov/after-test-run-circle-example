@@ -43,13 +43,16 @@ workflows:
       - cypress/run:
           # note: does not fail the build
           command: npm run ci
+          record: true
+          parallel: true
+          parallelism: 3
           post-steps:
             # save test results file in the workspace
-            - run: cat test-results.json
+            - run: cat test-results-*.json
             - persist_to_workspace:
                 root: ~/
                 paths:
-                  - project/test-results.json
+                  - project/test-results-*.json
 
       - tests-passed:
           requires:

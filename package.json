@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/bahmutov/after-test-run-circle-example#readme",
   "devDependencies": {
-    "cypress": "4.0.2"
+    "cypress": "4.0.2",
+    "globby": "11.0.0"
   }
 }
